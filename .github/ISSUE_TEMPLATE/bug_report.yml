@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a SmoothPad defect
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: SmoothPad version
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version (winver)
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Laptop model, Precision Touchpad VID/PID, transport (I2C/USB/Bluetooth)
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: checkboxes
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - label: I built and installed SmoothPadFilter myself (not shipped in Releases)
+        - label: Mac Mode was ON (only possible with a live filter)
+        - label: UI showed Degraded / Windows Native
+        - label: External mouse was connected
+        - label: Double movement occurred

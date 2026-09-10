@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Build the filter yourself
+    url: https://github.com/Shiroo09/SmoothPad/blob/main/docs/byo-driver.md
+    about: This repo does not ship a signed SmoothPadFilter.sys. WDK + signing is on you.
+  - name: Why Mac Mode is Degraded
+    url: https://github.com/Shiroo09/SmoothPad/blob/main/docs/troubleshooting.md
+    about: Native PTP promotion cannot be muted from user mode. That is not a missing checkbox.

@@ -1,0 +1,20 @@
+name: Feature request
+description: Propose a SmoothPad change
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Pointer inertia will not be accepted. Kernel work is in scope only for PTP-specific native promotion suppression.

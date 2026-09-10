@@ -1,0 +1,92 @@
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+
+## Build
+out/
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+ARM64/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.dll
+*.exe
+# Compiled import/static libs — not the SmoothPad.Lib/ project folder
+*.lib
+!src/SmoothPad.Lib/
+!src/SmoothPad.Lib/**
+*.appx
+*.msix
+*.msixbundle
+*.appxbundle
+*.pri
+*.winmd
+*.tlog
+*.log
+*.lastbuildstate
+*.recipe
+*.iobj
+*.ipdb
+
+## NuGet
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+## Certificates / secrets / kernel binaries (never publish unsigned .sys)
+*.pfx
+*.p12
+*.key
+*.cer
+*.pem
+*.pvk
+*.spc
+*.sys
+*.cat
+# Internal implementation prompt — not part of the public project
+prompt.md
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+
+## Traces / logs (private)
+*.sptrace
+*.etl
+logs/
+traces/
+.firecrawl/
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## IDE
+.idea/
+.vscode/
+*.code-workspace
+
+## Python / misc
+__pycache__/
+*.pyc

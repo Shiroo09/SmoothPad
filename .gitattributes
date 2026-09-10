@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.props text eol=crlf
+*.inf text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.pfx binary

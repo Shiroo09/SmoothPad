@@ -1,0 +1,29 @@
+name: Hardware compatibility
+description: Report Precision Touchpad detection or motion quality on a specific laptop
+labels: [hardware]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Laptop / device model
+    validations:
+      required: true
+  - type: input
+    id: vidpid
+    attributes:
+      label: VID/PID (from SmoothPad diagnostics or `SmoothPad.Cli inspect`)
+    validations:
+      required: true
+  - type: dropdown
+    id: transport
+    attributes:
+      label: Transport
+      options: [I2C, USB, Bluetooth, unknown]
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What works / what does not
+    validations:
+      required: true

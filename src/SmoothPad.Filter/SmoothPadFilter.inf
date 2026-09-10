@@ -1,0 +1,56 @@
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = HIDClass
+ClassGuid   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %ManufacturerName%
+CatalogFile = SmoothPadFilter.cat
+DriverVer   = 09/10/2026,0.1.0.0
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+SmoothPadFilter.sys = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64,NTarm64
+
+[Standard.NTamd64]
+%DeviceDesc% = SmoothPadFilter_Install, HID_DEVICE_UP:000D_U:0005
+
+[Standard.NTarm64]
+%DeviceDesc% = SmoothPadFilter_Install, HID_DEVICE_UP:000D_U:0005
+
+[SmoothPadFilter_Install.NT]
+CopyFiles = SmoothPadFilter_Copy
+Include   = msmhid.inf
+
+[SmoothPadFilter_Copy]
+SmoothPadFilter.sys
+
+[SmoothPadFilter_Install.NT.HW]
+AddReg = SmoothPadFilter_HW_AddReg
+
+[SmoothPadFilter_HW_AddReg]
+; Upper filter of the matched Precision Touchpad HID collection only.
+HKR,,"UpperFilters",0x00010008,"SmoothPadFilter"
+
+[SmoothPadFilter_Install.NT.Services]
+AddService = SmoothPadFilter,0x00000002,SmoothPadFilter_Service
+
+[SmoothPadFilter_Service]
+DisplayName    = %ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %13%\SmoothPadFilter.sys
+
+[Strings]
+ManufacturerName = "SmoothPad"
+DiskName         = "SmoothPad Filter Installation"
+DeviceDesc       = "SmoothPad Precision Touchpad Filter"
+ServiceDesc      = "SmoothPadFilter"

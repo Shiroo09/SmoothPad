@@ -1,0 +1,50 @@
+name: release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - name: Version
+        id: ver
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}".TrimStart("v")
+          echo "version=$v" >> $env:GITHUB_OUTPUT
+      - name: Build
+        run: msbuild SmoothPad.sln /m /p:Configuration=Release /p:Platform=x64
+      - name: Test
+        run: .\out\x64\Release\SmoothPad.Tests.exe
+      - name: Package
+        shell: pwsh
+        run: .\scripts\package.ps1 -Configuration Release -Platform x64 -Version ${{ steps.ver.outputs.version }}
+      - name: Sign (optional)
+        shell: pwsh
+        run: |
+          Get-ChildItem .\out\msix, .\out\x64\Release -Filter *.exe -ErrorAction SilentlyContinue |
+            ForEach-Object { .\scripts\sign.ps1 -Path $_.FullName }
+          Get-ChildItem .\out\msix -Filter *.msix -ErrorAction SilentlyContinue |
+            ForEach-Object { .\scripts\sign.ps1 -Path $_.FullName }
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SmoothPad-${{ steps.ver.outputs.version }}-unsigned-if-no-secrets
+          path: |
+            out/x64/Release/*.exe
+            out/msix/**
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            out/msix/**
+            out/x64/Release/SmoothPad.App.exe
+            out/x64/Release/SmoothPad.Cli.exe
+            out/x64/Release/SmoothPad.Tests.exe

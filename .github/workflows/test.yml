@@ -1,0 +1,20 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - run: msbuild SmoothPad.sln /m /p:Configuration=Release /p:Platform=x64
+      - name: Unit + replay tests
+        run: .\out\x64\Release\SmoothPad.Tests.exe
+      - name: Curve bench
+        run: .\out\x64\Release\SmoothPad.Cli.exe curve
+      - name: Latency bench
+        run: .\out\x64\Release\SmoothPad.Cli.exe bench
