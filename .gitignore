@@ -90,3 +90,6 @@ Desktop.ini
 ## Python / misc
 __pycache__/
 *.pyc
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

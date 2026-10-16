@@ -1,5 +1,7 @@
 # Changelog
 
+## [Unreleased]
+
 ## 0.1.0 — 2026-09-10
 
 Initial public source tree (user-mode product + optional filter **source**).
